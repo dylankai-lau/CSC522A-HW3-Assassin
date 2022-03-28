@@ -51,6 +51,7 @@ public class AssassinManagerTest {
         Assert.fail("AssassinManager should throw IllegalArgumentExeption for empty list");
     }
 
+    // construct as expected
     @Test
     public void constructorPositiveTest(){
         List<String> filledList = new ArrayList<>();
@@ -174,12 +175,8 @@ public class AssassinManagerTest {
     }
 
     // Kill
-    /*
-    *   names.add("Bob");
-    *   names.add("Sam");
-    *   names.add("Kyra");
-    *   names.add("Julia");
-    * */
+
+    // kill first person in list
     @Test
     public void killFirst(){
         AssassinManager manager = generatePopulatedKillRing();
@@ -188,6 +185,7 @@ public class AssassinManagerTest {
         Assert.assertEquals(true, manager.graveyardContains("Bob"));
     }
 
+    // kill from middle of list
     @Test
     public void killMiddle(){
         AssassinManager manager = generatePopulatedKillRing();
@@ -196,6 +194,7 @@ public class AssassinManagerTest {
         Assert.assertEquals(true, manager.graveyardContains("Sam"));
     }
 
+    // kill from end of list
     @Test
     public void killLast(){
         AssassinManager manager = generatePopulatedKillRing();
@@ -204,12 +203,14 @@ public class AssassinManagerTest {
         Assert.assertEquals(true, manager.graveyardContains("Julia"));
     }
 
+    // try to kill player after game is over
     @Test (expected = IllegalStateException.class)
     public void killGameOver(){
         AssassinManager manager = generateEndKillRing();
         manager.kill("Bob");
     }
 
+    // try to kill player when name does not exist
     @Test (expected = IllegalArgumentException.class)
     public void killNameNonExistent(){
         AssassinManager manager = generatePopulatedKillRing();
